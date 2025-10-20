@@ -1,7 +1,7 @@
 import { ProductService } from '@/app/services/products-services';
 import React from 'react';
 
-export async function generateMetaData(props:any){
+export async function generateMetadata(props:any){
   console.log("generateMetaData: ", props);
   const productId = props.params.productId;
   var product;
