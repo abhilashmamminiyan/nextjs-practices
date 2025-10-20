@@ -12,7 +12,7 @@ async function getProducts() {
   return productResp;
 }
 
-export const metaData: Metadata = {
+export const metadata: Metadata = {
   title:"Products List Page"
 }
 
