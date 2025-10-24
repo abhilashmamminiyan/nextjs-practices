@@ -1,12 +1,17 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Button from "../Button";
+import { useCart } from "../../context/cartContext";
 
 export default function ProductCard(props: any) {
   const prod = props.product;
   const router = useRouter();
+
+  const { addToCart } = useCart();
+  const [isAdding, setIsAdding] = useState(false);
+
   const [selectedProduct, setSelectedProduct] = useState({});
 
   const selectProd = () => {
@@ -24,17 +29,33 @@ export default function ProductCard(props: any) {
   //     router.push('/products?'+ searchParams)
   // }
 
+  const handleAddToCart = () => {
+    setIsAdding(true);
+    addToCart(prod);
+    setTimeout(() => {
+      setIsAdding(false);
+    }, 500);
+  };
+
   return (
     <div className="border">
-      <Link href={"/products/" + prod.id} >
-        <div className="card" style={{ width: "14rem", height: "14em"}}>
-          <img src={prod.image} className="card-img-top h-50 w-75 object-fit-contain m-2" alt={prod.title} />
-          <div className="card-body">
-            <p className="card-text" style={{fontSize:"0.8em"}}>{prod.title}</p>
-          </div>
+      <div className="card" style={{ width: "14rem", height: "14em" }}>
+        <img
+          src={prod.image}
+          className="card-img-top h-50 w-75 object-fit-contain m-2"
+          alt={prod.title}
+        />
+        <div className="card-body">
+          <p className="card-text" style={{ fontSize: "0.8em" }}>
+            {prod.title}
+          </p>
         </div>
-      </Link>
-      <button 
+      </div>
+      <button className="btn btn-success w-100 mb-2" onClick={handleAddToCart}>
+        {isAdding ? "Adding..." : "Add to cart"}
+      </button>
+      
+      <button
         className="btn btn-primary w-100 mb-2"
         onClick={() => {
           router.push(`/products/${prod.id}`, {
@@ -43,10 +64,11 @@ export default function ProductCard(props: any) {
         }}
       >
         Details
-      </button> <br/>
+      </button>{" "}
+      <br />
       <button
-        className="btn btn-success w-100"
-        style={{fontSize:"0.8rem"}}
+        className="btn btn-warning w-100"
+        style={{ fontSize: "0.8rem" }}
         onClick={() => {
           router.push("/products?title=" + prod.title, {
             scroll: true,
@@ -58,8 +80,6 @@ export default function ProductCard(props: any) {
     </div>
   );
 }
-
-
 
 // "use client"
 

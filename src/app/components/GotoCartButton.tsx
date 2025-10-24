@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 export default function GotoCartButton() {
   const router = useRouter();
   return (
-    <div>
+    <div className="my-2">
       <button
-        className="btn btn-warning"
+        className="btn btn-warning me-3"
         onClick={() => {
           router.push("/carts");
         }}
