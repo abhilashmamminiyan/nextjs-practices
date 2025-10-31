@@ -1,9 +1,7 @@
 export default function DynamicSearch(props: any){
     const myParams:string[] = props.params.myParams;
-    const category = myParams[0];
-    const group = myParams[1];
-    const brand = myParams[2];
-    const modelNo = myParams[3];
+    const category = decodeURIComponent(myParams[0]);
 
-    return <div>DynamicSearch : {category}</div>
+    return <div>DynamicSearch : <h1>{category}</h1>
+    </div>
 }

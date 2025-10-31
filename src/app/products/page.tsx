@@ -34,7 +34,7 @@ export default async function products(props:any) {
     <div>
       <GotoCartButton />
       <h3>Products List</h3>
-      <Link href="#recommended" prefetch={false}>Go to Recommended Section</Link>
+      <Link href="#recommended" prefetch={false}><button className="btn btn-warning">Go to Recommended Section</button></Link>
       <Suspense fallback={<span style={{color: 'red'}}>Loading...</span>}>
         <ProductList />
       </Suspense>
